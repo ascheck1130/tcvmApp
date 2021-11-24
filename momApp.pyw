@@ -1,14 +1,31 @@
 import csv
 import tkinter as tk
 from tkinter.font import Font
+import numpy as np
+import sys
+import os
 
 global e1
 global conditions
 global food
 
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 conditions = []
 food = []
-with open("tcvmFoods.csv", encoding = 'utf-8') as csvfile:
+
+foodPath = resource_path("./tcvmFoods.csv")
+imagePath = resource_path("./background.png")
+    
+with open(foodPath, encoding = 'utf-8') as csvfile:
     reader = csv.reader(csvfile)
     for row in reader:
         food.append(row)
@@ -25,6 +42,81 @@ def printItems():
     output.title("OutPut")
     output.geometry("1000x460")
 
+    one = []
+    two = []
+    three = []
+    four = []
+    five= []
+    six = []
+    seven = []
+    eight = []
+    nine = []
+    ten = []
+    eleven = []
+    twelve = []
+    thirteen = []
+    fourteen = []
+    fifteen = []
+    sixteen = []
+    seventeen = []
+    eighteen = [] 
+    nineteen =[]
+    twenty = []
+    
+    x = 0
+    f = []
+    for i in food:
+        f.append(i[0])
+        for j in i:
+            for l in conditions:
+                if(j != i[0] and j == l):
+                    f.append(j)
+                    x += 1
+                
+        if(x == 1):
+            one.append(f)
+        if(x == 2):
+            two.append(f)
+        if(x == 3):
+            three.append(f)
+        if(x == 4):
+            four.append(f)
+        if(x == 5):
+            five.append(f)
+        if(x == 6):
+            six.append(f)
+        if(x == 7):
+            seven.append(f)
+        if(x == 8):
+            eight.append(f)
+        if(x == 9):
+            nine.append(f)
+        if(x == 10):
+            ten.append(f)
+        if(x == 11):
+            eleven.append(f)
+        if(x == 12):
+            twelve.append(f)
+        if(x == 13):
+            thirteen.append(f)
+        if(x == 14):
+            fourteen.append(f)
+        if(x == 15):
+            fifteen.append(f)
+        if(x == 16):
+            sixteen.append(f)
+        if(x == 17):
+            seventeen.append(f)
+        if(x == 18):
+            eighteen.append(f)
+        if(x == 19):
+            nineteen.append(f)
+        if(x == 20):
+            twenty.append(f)
+
+        x = 0
+        f = []
+        
     text = tk.Text(output, bg = 'white', font = ('Arial', 11))
     if(len(conditions) != 0):
         text.insert(tk.INSERT, "====Input conditions====\n \n")
@@ -35,271 +127,293 @@ def printItems():
         
         text.insert(tk.INSERT, "\n=====Output foods=====\n\n")
 
-        if(len(conditions) == 1):
-            text.insert(tk.INSERT, "matches:\n \n")
-            for i in food:
+        if(len(twenty) != 0):
+            text.insert(tk.INSERT, "matching 20 conditions:\n\n")
+            for i in twenty:
+                text.insert(tk.INSERT, i[0])
+                text.insert(tk.INSERT, ", matching: ")
                 for x in i:
-                    if(x != i[0] and x == conditions[0]):
-                        text.insert(tk.INSERT, i)
-                        text.insert(tk.INSERT, ', matching the condition "')
+                    if( x != i[0]):
                         text.insert(tk.INSERT, x)
-                        text.insert(tk.INSERT, '"\n')
-
-        if(len(conditions) == 2):
-            twoOutOfTwo = []
-            oneOutOfTwo = []
-            for i in food:
-                m1 = False
-                m2 = False
-                for x in i:
-                    if(x != i[0] and x == conditions[0]):
-                        m1 = True
-
-                    if(x != i[0] and x == conditions[1]):
-                        m2 = True
-
-                if(m1 and m2):
-                    twoOutOfTwo.append(i)
-
-                elif(m1 or m2):
-                    oneOutOfTwo.append(i)
-
-            text.insert(tk.INSERT, "100% matches:\n\n")
-            for j in twoOutOfTwo:
-                text.insert(tk.INSERT,j[0])
-                text.insert(tk.INSERT,', matching the conditions "')
-                text.insert(tk.INSERT, conditions[0])
-                text.insert(tk.INSERT, ", ")
-                text.insert(tk.INSERT, conditions[1])
-                text.insert(tk.INSERT, '"\n')
-
-            text.insert(tk.INSERT, "\n50% matches:\n\n")
-            
-            for j in oneOutOfTwo:
-                text.insert(tk.INSERT,j[0])
-                text.insert(tk.INSERT,', matching the conditions "')
-                for x in j:
-                    if(x != j[0] and x == conditions[0]):
-                        text.insert(tk.INSERT, conditions[0])
-                        if(x != j[len(j)-1]):
+                        if(x != i[len(i) - 1]):
                             text.insert(tk.INSERT, ", ")
-
-                    if(x != j[0] and x == conditions[1]):
-                        text.insert(tk.INSERT, conditions[1])
-                        if(x != j[len(j)-1]):
-                            text.insert(tk.INSERT, ", ")
-                            
-                text.insert(tk.INSERT, '"\n')
                         
-
-        if(len(conditions) == 3):
-            threeOutOfThree = []
-            twoOutOfThree = []
-            oneOutOfThree = []
-            for i in food:
-                m1 = False
-                m2 = False
-                m3 = False
-                for x in i:
-                    if(x != i[0] and x == conditions[0]):
-                        m1 = True
-
-                    if(x != i[0] and x == conditions[1]):
-                        m2 = True
-
-                    if(x != i[0] and x == conditions[2]):
-                        m3 = True
-
-                t = 0
-                if(m1):
-                    t += 1
-                if(m2):
-                    t += 1
-                if(m3):
-                    t += 1
+                text.insert(tk.INSERT, "\n")
+            text.insert(tk.INSERT, "\n")
                 
-                if(t == 1):
-                    oneOutOfThree.append(i)
-                if(t == 2):
-                    twoOutOfThree.append(i)
-                if(t == 3):
-                    threeOutOfThree.append(i)
-
-            text.insert(tk.INSERT, "100% matches:\n\n")
-            for j in threeOutOfThree:
-                text.insert(tk.INSERT,j[0])
-                text.insert(tk.INSERT,', matching the conditions "')
-                text.insert(tk.INSERT, conditions[0])
-                text.insert(tk.INSERT, ", ")
-                text.insert(tk.INSERT, conditions[1])
-                text.insert(tk.INSERT, ', ')
-                text.insert(tk.INSERT, conditions[2])
-                text.insert(tk.INSERT, '"\n')
-
-            text.insert(tk.INSERT, "\n66% matches:\n\n")
-            for j in twoOutOfThree:
-                text.insert(tk.INSERT,j[0])
-                text.insert(tk.INSERT,', matching the conditions "')
-                for x in j:
-                    if(x != j[0] and x == conditions[0]):
-                        text.insert(tk.INSERT, conditions[0])
-                        if(x != j[len(j)-1]):
+        if(len(nineteen) != 0):
+            text.insert(tk.INSERT, "matching 19 conditions:\n\n")
+            for i in nineteen:
+                text.insert(tk.INSERT, i[0])
+                text.insert(tk.INSERT, ", matching: ")
+                for x in i:
+                    if( x != i[0]):
+                        text.insert(tk.INSERT, x)
+                        if(x != i[len(i) - 1]):
                             text.insert(tk.INSERT, ", ")
-
-                    if(x != j[0] and x == conditions[1]):
-                        text.insert(tk.INSERT, conditions[1])
-                        if(x != j[len(j)-1]):
-                            text.insert(tk.INSERT, ", ")
-
-                    if(x != j[0] and x == conditions[2]):
-                        text.insert(tk.INSERT, conditions[2])
-                        if(x != j[len(j)-1]):
-                            text.insert(tk.INSERT, ", ")
-                text.insert(tk.INSERT, '"\n')
-
-            text.insert(tk.INSERT, "\n33% matches:\n\n")
-            for j in oneOutOfThree:
-                text.insert(tk.INSERT,j[0])
-                text.insert(tk.INSERT,', matching the conditions "')
-                for x in j:
-                    if(x != j[0] and x == conditions[0]):
-                        text.insert(tk.INSERT, conditions[0])
-                        if(x != j[len(j)-1]):
-                            text.insert(tk.INSERT, ", ")
-
-                    if(x != j[0] and x == conditions[1]):
-                        text.insert(tk.INSERT, conditions[1])
-                        if(x != j[len(j)-1]):
-                            text.insert(tk.INSERT, ", ")
-
-                    if(x != j[0] and x == conditions[2]):
-                        text.insert(tk.INSERT, conditions[2])
-                        if(x != j[len(j)-1]):
-                            text.insert(tk.INSERT, ", ")
-                text.insert(tk.INSERT, '"\n')
-
-
-            if(len(conditions) == 4):
-                fourOutOfFour = []
-                threeOutOfFour = []
-                twoOutOfFour = []
-                oneOutOfFour = []
-                for i in food:
-                    t = 0
-                    for x in i:
-                        if(x != i[0] and x == conditions[0]):
-                            t += 1
-
-                        if(x != i[0] and x == conditions[1]):
-                            t += 1
-
-                        if(x != i[0] and x == conditions[2]):
-                            t += 1
-
-                        if(x != i[0] and x == conditions[3]):
-                            t += 1
-
-                    if(t == 1):
-                        oneOutOfFour.append(i)
-                    if(t == 2):
-                        twoOutOfFour.append(i)
-                    if(t == 3):
-                        threeOutOfFour.append(i)
-                    if(t == 4):
-                        fourOutOfFour.append(i)
-
-                text.insert(tk.INSERT, "100% matches:\n\n")
-                for j in fourOutOfFour:
-                    text.insert(tk.INSERT,j[0])
-                    text.insert(tk.INSERT,', matching the conditions "')
-                    text.insert(tk.INSERT, conditions[0])
-                    text.insert(tk.INSERT, ", ")
-                    text.insert(tk.INSERT, conditions[1])
-                    text.insert(tk.INSERT, ', ')
-                    text.insert(tk.INSERT, conditions[2])
-                    text.insert(tk.INSERT, ', ')
-                    text.insert(tk.INSERT, conditions[3])
-                    text.insert(tk.INSERT, '"\n')
-
-
-                text.insert(tk.INSERT, "\n75% matches:\n\n")
-                for j in threeOutOfFour:
-                    text.insert(tk.INSERT,j[0])
-                    text.insert(tk.INSERT,', matching the conditions "')
-                    for x in j:
-                        if(x != j[0] and x == conditions[0]):
-                            text.insert(tk.INSERT, conditions[0])
-                            if(x != j[len(j)-1]):
-                                text.insert(tk.INSERT, ", ")
-
-                        if(x != j[0] and x == conditions[1]):
-                            text.insert(tk.INSERT, conditions[1])
-                            if(x != j[len(j)-1]):
-                                text.insert(tk.INSERT, ", ")
-
-                        if(x != j[0] and x == conditions[2]):
-                            text.insert(tk.INSERT, conditions[2])
-                            if(x != j[len(j)-1]):
-                                text.insert(tk.INSERT, ", ")
-
-                        if(x != j[0] and x == conditions[3]):
-                            text.insert(tk.INSERT, conditions[3])
-                            if(x != j[len(j)-1]):
-                                text.insert(tk.INSERT, ", ")
-                    text.insert(tk.INSERT, '"\n')
-
-                text.insert(tk.INSERT, "\n50% matches:\n\n")
-                for j in twoOutOfFour:
-                    text.insert(tk.INSERT,j[0])
-                    text.insert(tk.INSERT,', matching the conditions "')
-                    for x in j:
-                        if(x != j[0] and x == conditions[0]):
-                            text.insert(tk.INSERT, conditions[0])
-                            if(x != j[len(j)-1]):
-                                text.insert(tk.INSERT, ", ")
-
-                        if(x != j[0] and x == conditions[1]):
-                            text.insert(tk.INSERT, conditions[1])
-                            if(x != j[len(j)-1]):
-                                text.insert(tk.INSERT, ", ")
-
-                        if(x != j[0] and x == conditions[2]):
-                            text.insert(tk.INSERT, conditions[2])
-                            if(x != j[len(j)-1]):
-                                text.insert(tk.INSERT, ", ")
-
-                        if(x != j[0] and x == conditions[3]):
-                            text.insert(tk.INSERT, conditions[3])
-                            if(x != j[len(j)-1]):
-                                text.insert(tk.INSERT, ", ")
-                    text.insert(tk.INSERT, '"\n')
-
-                text.insert(tk.INSERT, "\n33% matches:\n\n")
-                for j in oneOutOfFour:
-                    text.insert(tk.INSERT,j[0])
-                    text.insert(tk.INSERT,', matching the conditions "')
-                    for x in j:
-                        if(x != j[0] and x == conditions[0]):
-                            text.insert(tk.INSERT, conditions[0])
-                            if(x != j[len(j)-1]):
-                                text.insert(tk.INSERT, ", ")
-
-                        if(x != j[0] and x == conditions[1]):
-                            text.insert(tk.INSERT, conditions[1])
-                            if(x != j[len(j)-1]):
-                                text.insert(tk.INSERT, ", ")
-
-                        if(x != j[0] and x == conditions[2]):
-                            text.insert(tk.INSERT, conditions[2])
-                            if(x != j[len(j)-1]):
-                                text.insert(tk.INSERT, ", ")
-
-                        if(x != j[0] and x == conditions[2]):
-                            text.insert(tk.INSERT, conditions[2])
-                            if(x != j[len(j)-1]):
-                                text.insert(tk.INSERT, ", ")
-                    text.insert(tk.INSERT, '"\n')
                         
+                text.insert(tk.INSERT, "\n")
+            text.insert(tk.INSERT, "\n")
+
+        
+        if(len(eighteen) != 0):
+            text.insert(tk.INSERT, "matching 18 conditions:\n\n")
+            for i in eighteen:
+                text.insert(tk.INSERT, i[0])
+                text.insert(tk.INSERT, ", matching: ")
+                for x in i:
+                    if( x != i[0]):
+                        text.insert(tk.INSERT, x)
+                        if(x != i[len(i) - 1]):
+                            text.insert(tk.INSERT, ", ")
+                        
+                text.insert(tk.INSERT, "\n")
+            text.insert(tk.INSERT, "\n")
+
+        if(len(seventeen) != 0):
+            text.insert(tk.INSERT, "matching 17 conditions:\n\n")
+            for i in seventeen:
+                text.insert(tk.INSERT, i[0])
+                text.insert(tk.INSERT, ", matching: ")
+                for x in i:
+                    if( x != i[0]):
+                        text.insert(tk.INSERT, x)
+                        if(x != i[len(i) - 1]):
+                            text.insert(tk.INSERT, ", ")
+                    
+                text.insert(tk.INSERT, "\n")
+            text.insert(tk.INSERT, "\n")
+
+        if(len(sixteen) != 0):
+            text.insert(tk.INSERT, "matching 16 conditions:\n\n")
+            for i in sixteen:
+                text.insert(tk.INSERT, i[0])
+                text.insert(tk.INSERT, ", matching: ")
+                for x in i:
+                    if( x != i[0]):
+                        text.insert(tk.INSERT, x)
+                        if(x != i[len(i) - 1]):
+                            text.insert(tk.INSERT, ", ")
+                       
+                text.insert(tk.INSERT, "\n")
+            text.insert(tk.INSERT, "\n")
+
+
+        if(len(fifteen) != 0):
+            text.insert(tk.INSERT, "matching 15 conditions:\n\n")
+            for i in fifteen:
+                text.insert(tk.INSERT, i[0])
+                text.insert(tk.INSERT, ", matching: ")
+                for x in i:
+                    if( x != i[0]):
+                        text.insert(tk.INSERT, x)
+                        if(x != i[len(i) - 1]):
+                            text.insert(tk.INSERT, ", ")
+                       
+                text.insert(tk.INSERT, "\n")
+            text.insert(tk.INSERT, "\n")
+
+        if(len(fourteen) != 0):
+            text.insert(tk.INSERT, "matching 14 conditions:\n\n")
+            for i in fourteen:
+                text.insert(tk.INSERT, i[0])
+                text.insert(tk.INSERT, ", matching: ")
+                for x in i:
+                    if( x != i[0]):
+                        text.insert(tk.INSERT, x)
+                        if(x != i[len(i) - 1]):
+                            text.insert(tk.INSERT, ", ")
+                        
+                text.insert(tk.INSERT, "\n")
+            text.insert(tk.INSERT, "\n")
+
+        if(len(thirteen) != 0):
+            text.insert(tk.INSERT, "matching 13 conditions:\n\n")
+            for i in thirteen:
+                text.insert(tk.INSERT, i[0])
+                text.insert(tk.INSERT, ", matching: ")
+                for x in i:
+                    if( x != i[0]):
+                        text.insert(tk.INSERT, x)
+                        if(x != i[len(i) - 1]):
+                            text.insert(tk.INSERT, ", ")
+                        
+                text.insert(tk.INSERT, "\n")
+            text.insert(tk.INSERT, "\n")
+
+
+        if(len(twelve) != 0):
+            text.insert(tk.INSERT, "matching 12 conditions:\n\n")
+            for i in twelve:
+                text.insert(tk.INSERT, i[0])
+                text.insert(tk.INSERT, ", matching: ")
+                for x in i:
+                    if( x != i[0]):
+                        text.insert(tk.INSERT, x)
+                        if(x != i[len(i) - 1]):
+                            text.insert(tk.INSERT, ", ")
+                        
+                text.insert(tk.INSERT, "\n")
+            text.insert(tk.INSERT, "\n")
+
+
+        if(len(eleven) != 0):
+            text.insert(tk.INSERT, "matching 11 conditions:\n\n")
+            for i in eleven:
+                text.insert(tk.INSERT, i[0])
+                text.insert(tk.INSERT, ", matching: ")
+                for x in i:
+                    if( x != i[0]):
+                        text.insert(tk.INSERT, x)
+                        if(x != i[len(i) - 1]):
+                            text.insert(tk.INSERT, ", ")
+                       
+                text.insert(tk.INSERT, "\n")
+            text.insert(tk.INSERT, "\n")
+
+        if(len(ten) != 0):
+            text.insert(tk.INSERT, "matching 10 conditions:\n")
+            for i in ten:
+                text.insert(tk.INSERT, i[0])
+                text.insert(tk.INSERT, ", matching: ")
+                for x in i:
+                    if( x != i[0]):
+                        text.insert(tk.INSERT, x)
+                        if(x != i[len(i) - 1]):
+                            text.insert(tk.INSERT, ", ")
+                        
+                text.insert(tk.INSERT, "\n")
+            text.insert(tk.INSERT, "\n")
+
+
+        if(len(nine) != 0):
+            text.insert(tk.INSERT, "matching 9 conditions:\n\n")
+            for i in nine:
+                text.insert(tk.INSERT, i[0])
+                text.insert(tk.INSERT, ", matching: ")
+                for x in i:
+                    if( x != i[0]):
+                        text.insert(tk.INSERT, x)
+                        if(x != i[len(i) - 1]):
+                            text.insert(tk.INSERT, ", ")
+                        
+                text.insert(tk.INSERT, "\n")
+            text.insert(tk.INSERT, "\n")
+
+        if(len(eight) != 0):
+            text.insert(tk.INSERT, "matching 8 conditions:\n\n")
+            for i in eight:
+                text.insert(tk.INSERT, i[0])
+                text.insert(tk.INSERT, ", matching: ")
+                for x in i:
+                    if( x != i[0]):
+                        text.insert(tk.INSERT, x)
+                        if(x != i[len(i) - 1]):
+                            text.insert(tk.INSERT, ", ")
+                        
+                text.insert(tk.INSERT, "\n")
+            text.insert(tk.INSERT, "\n")
+
+        if(len(seven) != 0):
+            text.insert(tk.INSERT, "matching 7 conditions:\n\n")
+            for i in seven:
+                text.insert(tk.INSERT, i[0])
+                text.insert(tk.INSERT, ", matching: ")
+                for x in i:
+                    if( x != i[0]):
+                        text.insert(tk.INSERT, x)
+                        if(x != i[len(i) - 1]):
+                            text.insert(tk.INSERT, ", ")
+                        
+                text.insert(tk.INSERT, "\n")
+            text.insert(tk.INSERT, "\n")
+
+
+        if(len(six) != 0):
+            text.insert(tk.INSERT, "matching 6 conditions:\n\n")
+            for i in six:
+                text.insert(tk.INSERT, i[0])
+                text.insert(tk.INSERT, ", matching: ")
+                for x in i:
+                    if( x != i[0]):
+                        text.insert(tk.INSERT, x)
+                        if(x != i[len(i) - 1]):
+                            text.insert(tk.INSERT, ", ")
+                        
+                text.insert(tk.INSERT, "\n")
+            text.insert(tk.INSERT, "\n")
+
+
+        if(len(five) != 0):
+            text.insert(tk.INSERT, "matching 5 conditions:\n\n")
+            for i in five:
+                text.insert(tk.INSERT, i[0])
+                text.insert(tk.INSERT, ", matching: ")
+                for x in i:
+                    if( x != i[0]):
+                        text.insert(tk.INSERT, x)
+                        if(x != i[len(i) - 1]):
+                            text.insert(tk.INSERT, ", ")
+                        
+                text.insert(tk.INSERT, "\n")
+            text.insert(tk.INSERT, "\n")
+
+        if(len(four) != 0):
+            text.insert(tk.INSERT, "matching 4 conditions:\n\n")
+            for i in four:
+                text.insert(tk.INSERT, i[0])
+                text.insert(tk.INSERT, ", matching: ")
+                for x in i:
+                    if( x != i[0]):
+                        text.insert(tk.INSERT, x)
+                        if(x != i[len(i) - 1]):
+                            text.insert(tk.INSERT, ", ")
+
+                text.insert(tk.INSERT, "\n")
+            text.insert(tk.INSERT, "\n")
+
+        if(len(three) != 0):
+            text.insert(tk.INSERT, "matching 3 conditions:\n\n")
+            for i in three:
+                text.insert(tk.INSERT, i[0])
+                text.insert(tk.INSERT, ", matching: ")
+                for x in i:
+                    if( x != i[0]):
+                        text.insert(tk.INSERT, x)
+                        if(x != i[len(i) - 1]):
+                            text.insert(tk.INSERT, ", ")
+
+                text.insert(tk.INSERT, "\n")
+            text.insert(tk.INSERT, "\n")
+
+        if(len(two) != 0):
+            text.insert(tk.INSERT, "matching 2 conditions:\n\n")
+            for i in two:
+                text.insert(tk.INSERT, i[0])
+                text.insert(tk.INSERT, ", matching: ")
+                for x in i:
+                    if( x != i[0]):
+                        text.insert(tk.INSERT, x)
+                        if(x != i[len(i) - 1]):
+                            text.insert(tk.INSERT, ", ")
+
+                text.insert(tk.INSERT, "\n")
+            text.insert(tk.INSERT, "\n")
+
+        if(len(one) != 0):
+            text.insert(tk.INSERT, "matching 1 conditions:\n\n")
+            for i in one:
+                text.insert(tk.INSERT, i[0])
+                text.insert(tk.INSERT, ", matching: ")
+                for x in i:
+                    if( x != i[0]):
+                        text.insert(tk.INSERT, x)
+                        if(x != i[len(i) - 1]):
+                            text.insert(tk.INSERT, ", ")
+
+                text.insert(tk.INSERT, "\n")
+
+
         text.pack()
         output.mainloop()
         
@@ -313,7 +427,7 @@ obj = tk.Tk()
 obj.title("TCVM Foods")
 obj.geometry("305x305")
 
-background_image=tk.PhotoImage(file = 'background.png')
+background_image=tk.PhotoImage(file = imagePath)
 canvas = tk.Canvas(obj, width = 305, height = 305)
 canvas.pack(fill = 'both', expand = True)
 canvas.create_image(152.5,152.5,image = background_image, anchor = 'center')
@@ -321,8 +435,8 @@ canvas.create_image(152.5,152.5,image = background_image, anchor = 'center')
 header = canvas.create_text(152.5,20,font = ("Arial", 9), text = "Please enter each condition,\nPress Enter after each to enter it")
 
 def on_entry_click1(event):
-       e1.delete(0, "end") # delete all the text in the entry
-       e1.insert(0, '') #Insert blank for user input
+       e1.delete(0, "end")
+       e1.insert(0, '')
        e1.config(fg = 'black')
 
 e1 = tk.Entry(obj, bd = '1', fg = 'gray', font = ("Arial", 11))
